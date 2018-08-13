@@ -28,6 +28,8 @@
     # Terraform variables
     public_key = # Value: Contents of your personal SSH public key
     my_name    = # Your name or the name you'd like to apply to your environment
+    region     = 'us-east-1' # Change it if you'd like, but if you do, you'll need to choose a value for 'training_ami' that exists in the region.
+    vpc_id     = # Already set as the default VPC for you for this training, but change it to your preferred VPC if you are running this in your own account.
 
     # Environment variables
     AWS_ACCESS_KEY_ID     = # Value: Your AWS access key ID
@@ -39,6 +41,24 @@
     ```
     ssh -i ec2-user@<Public DNS of your VM>
     ```
+
+### Installing Consul and Vault
+
+- Follow the instructions in this [Vault Proof of Value document](https://add_link_here).
+- From a terminal on your Linux AWS instance, run the following to get the Vault and Consul Enterprise binaries and install them:
+  ```
+  $ sudo su -
+  # mkdir binaries && cd binaries
+  # yum -y install wget unzip
+  # wget https://s3-us-west-2.amazonaws.com/hc-enterprise-binaries/vault/ent/0.10.4/vault-enterprise_0.10.4%2Bent_linux_amd64.zip
+  # wget  https://s3-us-west-2.amazonaws.com/hc-enterprise-binaries/consul/ent/1.2.2/consul-enterprise_1.2.2%2Bent_linux_amd64.zip
+  # unzip consul-enterprise_1.2.2+ent_linux_amd64.zip
+  # unzip vault-enterprise_0.10.4+ent_linux_amd64.zip
+  # cp consul /usr/local/bin/consul
+  # cp vault /usr/local/sbin/vault
+  ```
+- Now let's get some services running.
+
 
 
 
