@@ -1,0 +1,2 @@
+- export AWS_DEFAULT_REGION=us-east-1
+- export TF_VAR_public_key=$(cat ~/.ssh/id_rsa.pub)
