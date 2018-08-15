@@ -26,6 +26,10 @@ output "Your EC2 instances:" {
     value = "${aws_instance.vault_training_instance.*.public_dns}"
 }
 
+output "Your EC2 instance IP addresses:" {
+    value = "${aws_instance.vault_training_instance.*.public_ip}"
+}
+
 output "Access to your VMs:" {
     value = "ssh -i ~/.ssh/id_rsa ec2-user@${aws_instance.vault_training_instance.0.public_dns}"
 }
