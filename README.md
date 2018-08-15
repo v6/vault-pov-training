@@ -57,11 +57,4 @@
   # cp consul /usr/local/bin/consul
   # cp vault /usr/local/sbin/vault
   ```
-- Now let's get some services running.
-
-
-
-
-
-- export AWS_DEFAULT_REGION=us-east-1
-- export TF_VAR_public_key=$(cat ~/.ssh/id_rsa.pub)
+- From here, let's use the [Proof of Value document](https://docs.google.com/document/d/1-5WJWPPr6gVRgc4Nn3INnqWo_20DVkIre9Otw3NgswU/edit#) to get our cluster running. If you can't access the link, the instructor will provide you with a PDF or Word document.

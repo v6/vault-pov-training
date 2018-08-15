@@ -9,6 +9,7 @@ resource "aws_key_pair" "training" {
 
 resource "aws_instance" "vault_training_instance" {
   ami                         = "${var.training_ami}"
+  count                       = "3"
   instance_type               = "t2.small"
   associate_public_ip_address = "true"
   security_groups             = ["${aws_security_group.vault_training.name}"]
@@ -21,16 +22,20 @@ resource "aws_instance" "vault_training_instance" {
 }
 
 // Outputs
-output "Access to your VM:" {
-    value = "ssh -i ~/.ssh/id_rsa ec2-user@${aws_instance.vault_training_instance.public_dns}"
+output "Your EC2 instances:" {
+    value = "${aws_instance.vault_training_instance.*.public_dns}"
+}
+
+output "Access to your VMs:" {
+    value = "ssh -i ~/.ssh/id_rsa ec2-user@${aws_instance.vault_training_instance.0.public_dns}"
 }
 
 output "Vault UI access (after installation):" {
-    value = "http://${aws_instance.vault_training_instance.public_dns}:8200"
+    value = "http://${aws_instance.vault_training_instance.0.public_dns}:8200"
 }
 
 output "Consul UI access (after installation):" {
-    value = "http://${aws_instance.vault_training_instance.public_dns}:8300"
+    value = "http://${aws_instance.vault_training_instance.0.public_dns}:8300"
 }
 
 output "AWS Key Name" {
