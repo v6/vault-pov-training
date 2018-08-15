@@ -44,8 +44,8 @@
 
 ### Installing Consul and Vault
 
-- Follow the instructions in this [Vault Proof of Value document](https://add_link_here).
-- From a terminal on your Linux AWS instance, run the following to get the Vault and Consul Enterprise binaries and install them:
+- Open a shell terminal on each of your linux instances.
+- From a terminal on each of your Linux AWS instances, run the following to get the Vault and Consul Enterprise binaries and install them:
   ```
   $ sudo su -
   # mkdir binaries && cd binaries
@@ -54,7 +54,8 @@
   # wget  https://s3-us-west-2.amazonaws.com/hc-enterprise-binaries/consul/ent/1.2.2/consul-enterprise_1.2.2%2Bent_linux_amd64.zip
   # unzip consul-enterprise_1.2.2+ent_linux_amd64.zip
   # unzip vault-enterprise_0.10.4+ent_linux_amd64.zip
-  # cp consul /usr/local/bin/consul
-  # cp vault /usr/local/sbin/vault
+  # cp -rp consul /usr/local/bin/consul
+  # cp -rp vault /usr/local/bin/vault
   ```
-- From here, let's use the [Proof of Value document](https://docs.google.com/document/d/1-5WJWPPr6gVRgc4Nn3INnqWo_20DVkIre9Otw3NgswU/edit#) to get our cluster running. If you can't access the link, the instructor will provide you with a PDF or Word document.
+
+- From here, we'll use the [Proof of Value document](https://docs.google.com/document/d/1-5WJWPPr6gVRgc4Nn3INnqWo_20DVkIre9Otw3NgswU/edit#) to get our cluster running. If you can't access the link, the instructor will provide you with a PDF or Word document.
