@@ -1,6 +1,6 @@
 #!/bin/sh
 # This is a setup script meant to be used with the Vault POV Workshop
-# https://github.com/TheHob/vault-pov-workshop
+# https://github.com/TheHob/vault-pov-training
 # 
 # Once you have stood up your three Vault instances, run the script on each
 # machine with your three IP addresses as script arguments. Put the IP address
