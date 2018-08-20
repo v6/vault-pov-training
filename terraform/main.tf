@@ -12,8 +12,9 @@ resource "aws_instance" "vault_training_instance" {
   count                       = "3"
   instance_type               = "t2.small"
   associate_public_ip_address = "true"
-  security_groups             = ["${aws_security_group.vault_training.name}"]
+  security_groups             = ["${aws_security_group.vault_training.id}"]
   key_name                    = "${aws_key_pair.training.key_name}"
+  subnet_id = "${element(module.vpc.public_subnets,0)}"
 
   tags {
     Name = "HashiCorp_Training_August_2018_${var.my_name}_${random_id.training.hex}"

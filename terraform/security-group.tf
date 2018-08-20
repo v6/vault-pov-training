@@ -1,7 +1,25 @@
+module "vpc" {
+  source = "terraform-aws-modules/vpc/aws"
+  name = "vpc_${var.my_name}_training"
+  cidr = "10.0.0.0/16"
+
+  private_subnets = ["10.0.1.0/24"]
+  public_subnets  = ["10.0.50.0/24"]
+  azs = ["${element(data.aws_availability_zones.available.names,0)}"]
+
+  enable_nat_gateway = true
+
+  tags = {
+    Terraform = "true"
+    Environment = "development"
+    Owner = "${var.my_name}"
+  }
+}
+
 resource "aws_security_group" "vault_training" {
   name = "training_${var.my_name}_${random_id.training.hex}"
   description = "Very insecure Vault and Consul SG - for training purposes only"
-  vpc_id      = "${var.vpc_id}"
+  vpc_id = "${module.vpc.vpc_id}"
 
   tags {
     Name    = "vault_training_${var.my_name}_${random_id.training.hex}"

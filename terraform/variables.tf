@@ -27,3 +27,5 @@ variable "training_ami" {
 variable "region" {
   default = "us-east-1"
 }
+
+data "aws_availability_zones" "available" {}
