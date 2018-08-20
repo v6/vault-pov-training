@@ -8,8 +8,13 @@ variable "vpc_id" {
 }
 
 variable "public_key" {
-  // Hint: export TF_VAR_private_key=$(cat private_key.pem)
+  // Hint: export TF_VAR_private_key=$(cat public_key.pem)
   description = "Public portion of key pair to create in order to access hosts. Sensitive variable."
+}
+
+variable "private_key" {
+  // Hint: export TF_VAR_private_key=$(cat private_key.pem)
+  description = "Private portion of key pair to create in order to access hosts. Sensitive variable."
 }
 
 resource "random_id" "training" {
@@ -29,3 +34,8 @@ variable "region" {
 }
 
 data "aws_availability_zones" "available" {}
+
+
+variable "binaries_url" {
+  default = "https://s3-us-west-2.amazonaws.com/hc-enterprise-binaries"
+}

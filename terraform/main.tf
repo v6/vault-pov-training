@@ -16,6 +16,21 @@ resource "aws_instance" "vault_training_instance" {
   key_name                    = "${aws_key_pair.training.key_name}"
   subnet_id = "${element(module.vpc.public_subnets,0)}"
 
+  connection {
+    user = "ec2-user"
+    private_key = "${var.private_key}"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo yum -y install unzip",
+      "sudo curl -o vault.zip ${var.binaries_url}/vault/ent/0.10.4/vault-enterprise_0.10.4%2Bent_linux_amd64.zip",
+      "sudo curl -o consul.zip ${var.binaries_url}/consul/ent/1.2.2/consul-enterprise_1.2.2%2Bent_linux_amd64.zip",
+      "sudo unzip consul.zip -d /usr/local/bin/",
+      "sudo unzip vault.zip -d /usr/local/bin/",
+    ]
+  }
+
   tags {
     Name = "HashiCorp_Training_August_2018_${var.my_name}_${random_id.training.hex}"
     TTL = "24"
